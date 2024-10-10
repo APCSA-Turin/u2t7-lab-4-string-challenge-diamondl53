@@ -66,6 +66,13 @@ public class StringProblems{
     // withoutX("xHi") → "Hi"
     // withoutX("Hxix") → "Hxi"
     public String withoutX(String s1){
+        int length = s1.length();
+        String first = s1.substring(0,1);
+        String last = s1.substring(length-1);
+        if (first.equals("x")&&last.equals("x")){
+             String final = s1.substring(1,length);
+             
+        }
         return "";
     }
 
