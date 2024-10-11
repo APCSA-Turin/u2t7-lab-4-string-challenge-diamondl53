@@ -1,3 +1,4 @@
+package com.example.project;
 public class StringProblems{
     //empty constructor
     public StringProblems(){}
@@ -9,54 +10,101 @@ public class StringProblems{
     // endsLy("oddy") → false
     public boolean endsLy(String x){
             //implement code here
+            // int length = x.length();
+            // String lasttwo = x.substring(length-2);
+            // if(length<2){
+            //     return false;
+            // } else if(lasttwo.equals("ly")){
+            //     return true;
+                
+            // } else{
+            //     return false;
+
+            // // }
+            // int length = x.length();
+            // String lasttwo = x.substring(length-2);
+            // if(lasttwo.equals("ly")){
+            //     return true;
+            // } else{
+            //     return false;
+            // }
             int length = x.length();
-            String lasttwo = x.substring(length-2);
-            if(length<2){
+            if (length<2){
                 return false;
-            } else if(lasttwo.equals("ly")){
+            } else if(x.substring(length-2).equals("ly")){
                 return true;
                 
-            } else{
-                return false;
             }
-        
+            return false; 
+            
+            
+
+            
+       
     }
 
 
     // Given two strings, append them together (known as "concatenation") 
     // and return the result. However, if the concatenation creates a double-char, 
     // then omit one of the chars, so "abc" and "cat" yields "abcat".
-    // conCat("abc", "cat") → "abcat"
-    // conCat("dog", "cat") → "dogcat"
-    // conCat("abc", "") → "abc"
+    // conCat1("abc", "cat") → "abcat"
+    // conCat2("dog", "cat") → "dogcat"
+    // conCat3("abc", "") → "abc"
     public String conCat(String s1, String s2){
         //implement code here
         int len1 = s1.length();
         int len2 = s2.length();
+        if(len2==0){
+            return s1;
+        }
         String lastofFirst = s1.substring(len1-1);
         String firstofSecond = s2.substring(0,1);
         if(lastofFirst.equals(firstofSecond)){
             String finalSecond = s2.substring(1);
             return s1+finalSecond;
-        }else{
-            return s1+s2;
+        
 
+        } else{
+            return s1+s2;
         }
+        
         
     }
 
     // Given a string, return a version without the first 2 chars. 
+    // Except keep the first char if it is 'a' and keep the second char if it is 'b'.
     // Except keep the first char if it is 'a' and keep the second char if it is 'b'. 
     // The string may be any length. Harder than it looks.
     // deFront("Hello") → "llo"
     // deFront("java") → "va"
     // deFront("away") → "aay"
+    // deFront("aapple") -> "apple"
+    // deFront("abee") -> "abee"
+    // deFront("xbring") -> "bring"
     public String deFont(String s1){
         //implement code here
         int length = s1.length();
-        String ignoreFirstTwo = s1.substring(2);
-        return ignoreFirstTwo;
+        boolean a = s1.substring(0,1).equals("a");
+        boolean b = s1.substring(1,2).equals("b");
+        String ignoreFirstTwo = "";
+        String first = "";
+        String second = "";
+        if(a==false&&b==false){
+            ignoreFirstTwo+= s1.substring(2);
+            return ignoreFirstTwo;
+        } else if(a==true&&b==false){
+             first+= s1.substring(0,1);
+             second+= s1.substring(2);
+            return first+second;
+        } else if(a==false&&b==true){
+             first+= s1.substring(1);
+            return first;
+        } else if(a==true&&b==true){
+            return s1;
+        }
+        return "";
     }
+    
 
     
     // Given a string, if the first or last chars are 'x', 
@@ -67,11 +115,19 @@ public class StringProblems{
     // withoutX("Hxix") → "Hxi"
     public String withoutX(String s1){
         int length = s1.length();
+        String stringfinal = "";
         String first = s1.substring(0,1);
         String last = s1.substring(length-1);
         if (first.equals("x")&&last.equals("x")){
-             String final = s1.substring(1,length);
+            stringfinal = s1.substring(1,length-1);
+             return stringfinal;
              
+        } else if (first.equals("x")&&!last.equals("x")){
+            stringfinal = s1.substring(1,length);
+            return stringfinal;
+        } else if(!first.equals("x")&&last.equals("x")){
+            stringfinal = s1.substring(0,length-1);
+            return stringfinal;
         }
         return "";
     }
@@ -83,7 +139,7 @@ public class StringProblems{
     // fizzString("fig") → "Fizz"
     // fizzString("dib") → "Buzz"
     // fizzString("fib") → "FizzBuzz"
-    public String testfizzString(String s1){
+    public String fizzString(String s1){
         String first = s1.substring(0,1);
         int length = s1.length();
         String last = s1.substring(length-1);
@@ -96,7 +152,6 @@ public class StringProblems{
     } else{
         return s1;
     }
-
     }
 
     // Given an int n, return the string form of the number followed 
@@ -108,12 +163,12 @@ public class StringProblems{
     // fizzString2(1) → "1!"
     // fizzString2(2) → "2!"
     // fizzString2(3) → "Fizz!"
-    public String testfizzString2(int x){
+    public String fizzString2(int x){
         String stringfinal = "";
         if(x%3!=0&&x%5!=0){
-            stringfinal+="\"\"";
+            // stringfinal+="\"";
             stringfinal+=x+"!";
-            stringfinal+="\"\"";
+            // stringfinal+="\"";
         } else if(x%3==0&&x%5!=0){
             stringfinal+="Fizz!";
         } else if(x%3!=0&&x%5==0){
